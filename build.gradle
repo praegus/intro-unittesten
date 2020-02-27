@@ -34,9 +34,9 @@ dependencies {
     implementation 'io.jsonwebtoken:jjwt:0.9.0'
 
     // Use JUnit5 test framework
-    testCompile('org.junit.jupiter:junit-jupiter-api:5.5.2')
-    testCompile('org.junit.jupiter:junit-jupiter-params:5.5.2')
-    testRuntime('org.junit.jupiter:junit-jupiter-engine:5.5.2')
+    testCompile('org.junit.jupiter:junit-jupiter-api:5.3.2')
+    testCompile('org.junit.jupiter:junit-jupiter-params:5.3.2')
+    testRuntime('org.junit.jupiter:junit-jupiter-engine:5.3.2')
     testCompile 'io.rest-assured:rest-assured:3.3.0'
     testCompile 'com.github.kstyrc:embedded-redis:0.6'
 
@@ -48,28 +48,6 @@ dependencies {
 // Define the main class for the application
 mainClassName = 'unit.test.training.UnitTestenForTesters'
 
-sourceSets {
-    integrationTest {
-        compileClasspath += sourceSets.main.output
-        runtimeClasspath += sourceSets.main.output
-    }
-}
-
-configurations {
-    integrationTestImplementation.extendsFrom testImplementation
-    integrationTestRuntimeOnly.extendsFrom testRuntime
-}
-
-task integrationTest(type: Test) {
-    outputs.upToDateWhen { false }
-
-    testClassesDirs = sourceSets.integrationTest.output.classesDirs
-    classpath = sourceSets.integrationTest.runtimeClasspath
-    useJUnitPlatform()
-}
-task itest(type: Test) {
-    dependsOn integrationTest
-}
 
 task start() {
     dependsOn bootRun;
@@ -77,13 +55,6 @@ task start() {
 
 test {
     useJUnitPlatform()
-}
-
-idea {
-    module {
-        testSourceDirs += project.sourceSets.integrationTest.java.srcDirs
-        testSourceDirs += project.sourceSets.integrationTest.resources.srcDirs
-    }
 }
 
 

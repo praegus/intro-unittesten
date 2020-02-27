@@ -1,4 +1,4 @@
-package codefromvideo.junitcompleet;
+package codefromvideo;
 
 import codefromvideo.junit.Palindroom;
 import org.junit.jupiter.api.Assertions;

@@ -1,4 +1,4 @@
-package codefromvideo.junitcompleet;
+package codefromvideo;
 
 import codefromvideo.junit.Calculator;
 import org.junit.jupiter.api.Test;
