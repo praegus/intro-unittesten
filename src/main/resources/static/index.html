@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Unit Testen voor Testers</title>
+    <script src="/lib/vue-2.6.10.js"></script>
+    <script src="/lib/axios-0.18.0.js"></script>
+    <script src="/lib/md5.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <!-- https://flatpickr.js.org/getting-started/ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr@4.5.7/dist/l10n/nl.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/vue-flatpickr-component@8"></script>
+
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Libre%20Franklin:400,700|Roboto&#43;Mono">
+    <style>
+      body, input {
+        font-family: 'Libre Franklin', Helvetica, Arial, sans-serif;
+      }
+      pre, code {
+        font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
+      }
+    </style>
+
+
+</head>
+<body>
+<!--<img id="acmecorp" src="/lib/acmecorp.png" />-->
+
+    <script>
+    function toggle() {
+      var x = document.getElementById("debugWindow");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+      x.style.display = "none";
+      }
+    }
+    </script>
+
+    <div id="app">
+        <button onclick="toggle()">Debug Window</button>
+        <div id="debugWindow" style="display: none">
+            <div style="color: green">Send to server via rest call: <br> <b style="font-family: 'Courier New'">{{  messageTo }}</b></div>
+            <br>
+            <div style="color: green;">Received from server via rest call: <br> <b style="font-family: 'Courier New'">{{  messageFrom }}</b></div>
+        </div>
+
+        <br/><br/>
+
+        <colleague-component v-for="colleague in everyoneExceptMe"
+                             v-bind:key="colleague.id"
+                             v-bind:id="colleague.id"
+                             v-bind:reservation="colleague.reservation"
+                             v-bind:fullname="colleague.firstname + ' ' + colleague.lastname"
+                             v-bind:email="colleague.email"
+                             v-on:debug="updateDebugString"
+        ></colleague-component>
+    </div>
+
+    <script type="module" src="/ColleagueComponent.js"></script>
+    <script type="module" src="app.js"></script>
+    <script nomodule>
+    document.getElementById("app").innerHTML = "Your browser doesn't support JavaScript modules :(";
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unit Testen voor Testers</title>
+    <script src="lib/vue-2.6.10.js"></script>
+    <script src="lib/axios-0.18.0.js"></script>
+    <script src="index.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <label for="name">Name:</label>
+        <input id="name" type="text" v-model.lazy="name" />
+        <p>{{ name }}</p>
+
+        <h1>Je collega's:</h1>
+        <div v-for="colleague in everyoneExceptMe" class="user" >
+            {{ colleague.id }}:
+            <span class="lighten">
+      <span v-html="colleague.fullname"></span>{{ colleague.firstname }} {{ colleague.lastname }}
+    </span>
+        </div>
+
+    </div>
+</body>
+</html>
