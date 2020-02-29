@@ -14,8 +14,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import redis.embedded.RedisServer;
-import unit.test.training.UnitTestenForTesters;
-import unit.test.training.dto.User;
+import vakantieplanner.UnitTestenForTesters;
+import vakantieplanner.dto.User;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
