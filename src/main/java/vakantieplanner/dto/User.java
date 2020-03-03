@@ -1,7 +1,12 @@
 package vakantieplanner.dto;
 
 public class User {
-    private int id;
+    private Integer id;
+    private String email;
+    private String firstname;
+    private String lastname;
+    private String password;
+    private Reservation reservation;
 
     public String getEmail() {
         return email;
@@ -10,13 +15,6 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    private String email;
-    private String firstname;
-    private String lastname;
-    private String password;
-
-    private Reservation reservation;
 
     public Reservation getReservation() {
         return reservation;
@@ -50,7 +48,7 @@ public class User {
         this.lastname = lastname;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

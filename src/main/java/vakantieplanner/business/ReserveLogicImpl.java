@@ -1,51 +1,49 @@
 package vakantieplanner.business;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import vakantieplanner.database.DataAccessLayer;
 import vakantieplanner.dto.Reservation;
 import vakantieplanner.dto.ReserveResponse;
 import vakantieplanner.dto.User;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 @Component
 public class ReserveLogicImpl implements ReserveLogic {
 
-    public ReserveLogicImpl() {
-    }
+    private DataAccessLayer dal;
 
-    private Map<Integer, Reservation> reservations = new HashMap<>();
+    @Autowired
+    public ReserveLogicImpl(DataAccessLayer dal) {
+        this.dal = dal;
+    }
 
     @Override
     public ReserveResponse makeReservation(User user, LocalDate startDate, LocalDate endDate) {
-        Reservation request = new Reservation(user, startDate, endDate);
-
-        final Optional<Map.Entry<Integer, Reservation>> conflictOption =
-                reservations.entrySet().stream().filter(e -> hasConflict(request, e.getValue())).findFirst();
-        if (conflictOption.isPresent()) {
-            Map.Entry<Integer, Reservation> conflict = conflictOption.get();
+        Reservation newRequest = new Reservation(user, startDate, endDate);
+        List<Reservation> existingReservations = dal.retrieveAllReservations();
+        final Optional<Reservation> possibleConflictingReservation =
+                existingReservations.stream().filter(r -> hasConflict(newRequest, r)).findFirst();
+        if (possibleConflictingReservation.isPresent()) {
+            Reservation conflict = possibleConflictingReservation.get();
             ReserveResponse response = new ReserveResponse();
-            response.setResult(false);
-            response.setBlockingUser(conflict.getValue().user);
+            response.setResult(false); // false geeft aan dat de reservering niet is goedgekeurd
+            response.setBlockingUser(conflict.user);
             return response;
         } else {
-            reservations.put(user.getId(), request);
+            dal.createReservation(newRequest);
             ReserveResponse response = new ReserveResponse();
-            response.setResult(true);
+            response.setResult(true); // true geeft aan dat de reservering goedgekeurd is
             return response;
         }
     }
 
-    @Override
-    public Reservation getExistingReservationForUser(int id) {
-        return reservations.get(id);
-    }
-
     // (EndA <= StartB or StartA >= EndB)
-    private boolean hasConflict(Reservation request, Reservation value) {
-        return !((request.endDate.compareTo(value.startDate) < 0)
-            || (request.startDate.compareTo(value.endDate) >= 0));
+    private boolean hasConflict(Reservation r, Reservation r2) {
+        return !((r.endDate.compareTo(r2.startDate) < 0)
+            || (r.startDate.compareTo(r2.endDate) >= 0));
     }
 }

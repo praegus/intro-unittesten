@@ -2,10 +2,10 @@
   margin: 50px;
 }
 
-#acmecorp {
-    position: absolute;
-    top: 0px;
-    right: 0px;
+.center {
+  margin-left: -10px;
+  margin-bottom: -4px;
+  width: 440px;
 }
 
 .colleague {
@@ -17,7 +17,6 @@
 }
 
 #debugWindow {
-    border: solid green 1px;
     margin-right: 300px;
 }
 

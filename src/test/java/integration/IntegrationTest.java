@@ -14,13 +14,13 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import redis.embedded.RedisServer;
-import vakantieplanner.UnitTestenForTesters;
+import vakantieplanner.Vakantieplanner;
 import vakantieplanner.dto.User;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = {UnitTestenForTesters.class}, webEnvironment
+@SpringBootTest(classes = {Vakantieplanner.class}, webEnvironment
         = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestPropertySource(properties = "server.port=1337")
 public class IntegrationTest {

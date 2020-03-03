@@ -11,23 +11,23 @@ import java.util.stream.Collectors;
 @Component
 public class UserLogicImpl implements UserLogic {
 
-    @Autowired
-    DataAccessLayer dal;
+    private DataAccessLayer dal;
 
     @Autowired
-    ReserveLogic reserveLogic;
-
-
-    @Override
-    public List<User> getUsers() {
-        return dal.getUsers().stream().map(u -> {
-            u.setReservation(reserveLogic.getExistingReservationForUser(u.getId()));
-            return u;
-            }).collect(Collectors.toList());
+    public UserLogicImpl(DataAccessLayer dal) {
+        this.dal = dal;
     }
 
     @Override
-    public User getUser(int id) {
-        return getUsers().stream().filter(u -> u.getId() == id).findFirst().get();
+    public List<User> retrieveAllUsersWithCurrentReservation() {
+        return dal.retrieveAllUsers().stream().map(u -> {
+            u.setReservation(dal.getReservationsForUser((u.getId())).orElse(null));
+            return u;
+        }).collect(Collectors.toList());
+    }
+
+    @Override
+    public User getUserWithCurrentReservation(Integer id) {
+        return retrieveAllUsersWithCurrentReservation().stream().filter(u -> u.getId() == id).findFirst().get();
     }
 }

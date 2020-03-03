@@ -18,8 +18,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     public static final String DEFAULT_ROLE_NAME = "UNITTESTUSER";
 
-    @Autowired
     private BCryptPasswordEncoder encoder;
+
+    @Autowired
+    public UserDetailsServiceImpl(BCryptPasswordEncoder encoder) {
+        this.encoder = encoder;
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

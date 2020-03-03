@@ -27,17 +27,17 @@ public class UserController {
 
     @GetMapping("/all")
     public List<User> retrieveAllUsers() {
-        return userLogic.getUsers();
+        return userLogic.retrieveAllUsersWithCurrentReservation();
     }
 
     @GetMapping("/names")
     public List<String> listAllUsersByFirstName() {
-        return userLogic.getUsers().stream().map(User::getFirstname).collect(Collectors.toList());
+        return userLogic.retrieveAllUsersWithCurrentReservation().stream().map(User::getFirstname).collect(Collectors.toList());
     }
 
     @GetMapping(path = "/{id}")
     public User details(@PathVariable("id") int id) {
-        return userLogic.getUser(id);
+        return userLogic.getUserWithCurrentReservation(id);
     }
 
     @PostMapping(path = "/reserve/{id}")
@@ -49,7 +49,7 @@ public class UserController {
         //
         LocalDate startDate = LocalDate.parse(reservation.getDateRange().substring(0, 10));
         LocalDate endDate = LocalDate.parse(reservation.getDateRange().substring(15, 25));
-        final User user = userLogic.getUser(id);
+        final User user = userLogic.getUserWithCurrentReservation(id);
         return reserveLogic.makeReservation(user, startDate, endDate);
     }
 }

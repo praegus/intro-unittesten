@@ -2,13 +2,12 @@ package vakantieplanner.business;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import vakantieplanner.database.DataAccessLayer;
 import vakantieplanner.dto.ReserveResponse;
 import vakantieplanner.dto.User;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 
 public class ReserveLogicTest {
@@ -16,7 +15,8 @@ public class ReserveLogicTest {
 
     @BeforeEach
     public void init() {
-        unitUnderTest = new ReserveLogicImpl();
+        DataAccessLayer database = mock(DataAccessLayer.class);
+        unitUnderTest = new ReserveLogicImpl(database);
     }
 
     @Test

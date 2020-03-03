@@ -1,7 +1,7 @@
 package codefromvideo.lifecycle;
 
 import codefromvideo.junit.Palindroom;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -10,21 +10,26 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PalindroomTestMetSetup {
 
-    @ParameterizedTest(name = "Test dat Palindroom voor {0} de waarde {1} teruggeeft")
+    private Palindroom palindroom;
+
+    @BeforeEach
+    public void setup() {
+        palindroom = new Palindroom();
+    }
+
+    @ParameterizedTest(name = "De string \"{0}\" is een palindroom: {1}")
     @CsvSource({
-            "abba,  true",
-            "sos,   true",
-            "'',    true",
+            "abba, true",
+            "sos, true",
+            "'', true",
             "abcde, false"
     })
-    public void geparameteriseerdeTest(String voorbeeld, boolean isPalindroom) {
-        Palindroom palindroom = new Palindroom();
-        assertEquals(isPalindroom, palindroom.isPalindroom(voorbeeld));
+    public void parameterizedTest(String palindroomVoorbeeld, boolean isPalindroom) {
+        assertEquals(isPalindroom, palindroom.isPalindroom(palindroomVoorbeeld));
     }
 
     @Test
     public void geldigePalindroom() {
-        Palindroom palindroom = new Palindroom();
         assertTrue(palindroom.isPalindroom("abba"));
         assertTrue(palindroom.isPalindroom("sos"));
         assertTrue(palindroom.isPalindroom("palindroommoordnilap"));
@@ -32,7 +37,6 @@ public class PalindroomTestMetSetup {
 
     @Test
     public void palindroomMetbijzondereCharacters() {
-        Palindroom palindroom = new Palindroom();
         assertFalse(palindroom.isPalindroom("()()"));
         assertTrue(palindroom.isPalindroom("())("));
         assertTrue(palindroom.isPalindroom("123321"));
@@ -40,7 +44,6 @@ public class PalindroomTestMetSetup {
 
     @Test
     public void legeStringGaatOokGoed() {
-        Palindroom palindroom = new Palindroom();
         assertTrue(palindroom.isPalindroom(""));
     }
 }
