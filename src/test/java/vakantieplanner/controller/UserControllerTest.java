@@ -1,19 +1,11 @@
 package vakantieplanner.controller;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 
 public class UserControllerTest {
+
     @Test
     public void testStringLogica() {
         // Voorbeeld hoe om te gaan met datums parsen in Java:

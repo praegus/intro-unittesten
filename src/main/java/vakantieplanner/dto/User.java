@@ -56,6 +56,16 @@ public class User {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                '}';
+    }
+
     public static class UserBuilder {
         public static User withValues(int id, String firstname, String lastname, String email, String encodedPassword) {
             final User result = new User();

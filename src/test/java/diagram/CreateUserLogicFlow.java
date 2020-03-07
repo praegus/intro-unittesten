@@ -14,7 +14,16 @@ public class CreateUserLogicFlow {
 
 
     public static void main(String... args) {
+        System.out.println("------------------------");
         Package pDto = User.class.getPackage();
+        String dtoDiagram = new ClassDiagramBuilder()
+                .addClasse(vakantieplanner.dto.User.class)
+                .addClasse(vakantieplanner.dto.Reservation.class)
+                .addClasse(vakantieplanner.dto.ReserveRequest.class)
+                .addClasse(vakantieplanner.dto.ReserveResponse.class)
+                .build();
+        System.out.println(dtoDiagram);
+        System.out.println("#######################################");
 
         String diagram = new ClassDiagramBuilder()
 //                .addClasse(vakantieplanner.dto.User.class)
@@ -30,5 +39,6 @@ public class CreateUserLogicFlow {
                 .addClasse(vakantieplanner.business.UserLogicImpl.class)
                 .build();
         System.out.println(diagram);
+        System.out.println("------------------------");
     }
 }

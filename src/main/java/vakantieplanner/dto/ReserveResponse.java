@@ -5,8 +5,12 @@ public class ReserveResponse {
 
     private User blockingUser;
 
-    public boolean isResult() {
+    public boolean reserveringIsGoedgekeurd() {
         return result;
+    }
+
+    public boolean reserveringIsAfgekeurd() {
+        return !result;
     }
 
     public void setResult(boolean result) {

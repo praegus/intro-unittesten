@@ -27,7 +27,7 @@ public class UserLogicImpl implements UserLogic {
     }
 
     @Override
-    public User getUserWithCurrentReservation(Integer id) {
-        return retrieveAllUsersWithCurrentReservation().stream().filter(u -> u.getId() == id).findFirst().get();
+    public User getUserWithCurrentReservation(Integer userId) {
+        return retrieveAllUsersWithCurrentReservation().stream().filter(user -> user.getId().equals(userId)).findFirst().get();
     }
 }

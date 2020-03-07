@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "email": "paul.macdonald@acme.corp",
+    "firstname": "Paul",
+    "lastname": "MacDonald",
+    "password": null,
+    "reservation": null
+  },
+  {
+    "id": 2,
+    "email": "anna.welch@acme.corp",
+    "firstname": "Anna",
+    "lastname": "Welch",
+    "password": null,
+    "reservation": null
+  },
+  {
+    "id": 3,
+    "email": "luke.hart@acme.corp",
+    "firstname": "Luke",
+    "lastname": "Hart",
+    "password": null,
+    "reservation": null
+  },
+  {
+    "id": 4,
+    "email": "kimberly.morgan@acme.corp",
+    "firstname": "Kimberly",
+    "lastname": "Morgan",
+    "password": null,
+    "reservation": null
+  },
+  {
+    "id": 5,
+    "email": "dan.macleod@acme.corp",
+    "firstname": "Dan",
+    "lastname": "MacLeod",
+    "password": null,
+    "reservation": null
+  },
+  {
+    "id": 6,
+    "email": "anthony.howard@acme.corp",
+    "firstname": "Anthony",
+    "lastname": "Howard",
+    "password": null,
+    "reservation": null
+  },
+  {
+    "id": 7,
+    "email": "jake.bailey@acme.corp",
+    "firstname": "Jake",
+    "lastname": "Bailey",
+    "password": null,
+    "reservation": null
+  },
+  {
+    "id": 8,
+    "email": "joanne.welch@acme.corp",
+    "firstname": "Joanne",
+    "lastname": "Welch",
+    "password": null,
+    "reservation": null
+  }
+]
