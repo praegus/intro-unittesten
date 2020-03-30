@@ -1,10 +1,13 @@
 package vakantieplanner.dto;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+
 public class ReserveResponse {
     private boolean result;
 
     private User blockingUser;
 
+    @JsonGetter
     public boolean reserveringIsGoedgekeurd() {
         return result;
     }

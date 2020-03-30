@@ -62,7 +62,7 @@ mounted () {
         // werk debug window bij met request en response:
         this.$emit('debug', {messageTo: req, messageFrom: resp} );
 
-        if (resp.result) {
+        if (resp.reserveringIsGoedgekeurd) {
             // Gelukt: werk UI bij:
             this.errorDuringReservation = "";
             this.successfulReservation = req.dateRange;
