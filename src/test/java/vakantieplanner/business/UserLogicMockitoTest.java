@@ -21,22 +21,9 @@ public class UserLogicMockitoTest {
 
     @BeforeEach
     public void setup() {
-        dalMock = Mockito.mock(DataAccessLayer.class);
-        unitUnderTest = new UserLogicImpl(dalMock);
+        // Maak hier de DataAccessLayer en UserLogic mocks aan m.b.v. Mockito
+        // (maak hierbij dus geen gebruik van de POJO-mock DataAccessLayerMock.java)
 
-        User voorbeeldUser = new User();
-        voorbeeldUser.setId(3);
-        voorbeeldUser.setFirstname("Henk");
-        voorbeeldUser.setLastname("Jansen");
-        List<User> users = Collections.singletonList(voorbeeldUser);
-
-        Mockito.when(dalMock.retrieveAllUsers()).thenReturn(users);
-
-        LocalDate vanaf = LocalDate.parse("2020-06-10"); // 10 juni
-        LocalDate tot = LocalDate.parse("2020-06-20"); // 20 juni
-
-        Reservation reservering = new Reservation(voorbeeldUser, vanaf, tot);
-        Mockito.when(dalMock.getReservationsForUser(3)).thenReturn(Optional.of(reservering));
     }
 
     @Test
