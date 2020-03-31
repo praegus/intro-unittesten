@@ -1,6 +1,7 @@
 package vakantieplanner.business;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import vakantieplanner.database.DataAccessLayer;
@@ -26,6 +27,8 @@ public class UserLogicMockitoTest {
 
     }
 
+    // Let op: Haal @Disabled hier weg als setup af is:
+    @Disabled
     @Test
     public void testOphalenGebruiker() {
         User resultaat = unitUnderTest.getUserWithCurrentReservation(3);
@@ -36,6 +39,8 @@ public class UserLogicMockitoTest {
         assertEquals("Jansen", resultaat.getLastname());
     }
 
+    // Let op: Haal @Disabled hier weg als setup af is:
+    @Disabled
     @Test
     public void testOphalenGebruikerMetBestaandeReservering() {
         User resultaat = unitUnderTest.getUserWithCurrentReservation(3);
