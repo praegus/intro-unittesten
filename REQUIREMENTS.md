@@ -9,6 +9,6 @@ Als een teamlid wil ik de reeds ingeplande vakanties van mijn collega's kunnen i
 ##REQUIREMENT 3:
 Als een teamlid wil ik een mutatie kunnen doorvoeren op mijn geplande vakantiedagen, 
 door een begin- en einddag per vakantie te kunnen invoeren.
+Als ik mijn vakantie aanpas verdwijnt mijn eerder ingevoerde vakantie.
 
 Als dit een conflict geeft met al geplande vakanties van een collega dan wil ik daar een foutmelding over krijgen.
-Dit mag verder geen effect hebben op andere vakanties die ik al heb ingepland.
