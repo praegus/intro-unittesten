@@ -1,7 +1,9 @@
 package vakantieplanner.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import vakantieplanner.business.ReserveLogic;
 import vakantieplanner.business.UserLogic;
 import vakantieplanner.dto.ReserveRequest;
@@ -44,12 +46,16 @@ public class UserController {
     public ReserveResponse reserveVacationDates(@PathVariable("id") int id, @RequestBody ReserveRequest reservation) {
         System.out.println("Servering voor gebruiker met id [" + id + "]: " + reservation);
 
-        // parse startDate en endDate
-        // Bijvoorbeeld: "2019-03-06 tot 2019-03-22"
-        //
-        LocalDate startDate = LocalDate.parse(reservation.getDateRange().substring(0, 10));
-        LocalDate endDate = LocalDate.parse(reservation.getDateRange().substring(15, 25));
-        final User user = userLogic.getUserWithCurrentReservation(id);
-        return reserveLogic.makeReservation(user, startDate, endDate);
+        try {
+            // Voorbeeld van input: "2019-03-06 tot 2019-03-22"
+            //
+            LocalDate startDate = LocalDate.parse(reservation.getDateRange().substring(0, 10));
+            LocalDate endDate = LocalDate.parse(reservation.getDateRange().substring(15, 25));
+            final User user = userLogic.getUserWithCurrentReservation(id);
+            return reserveLogic.makeReservation(user, startDate, endDate);
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(
+                    HttpStatus.UNPROCESSABLE_ENTITY, "Vakantie in het verleden", e);
+        }
     }
 }
