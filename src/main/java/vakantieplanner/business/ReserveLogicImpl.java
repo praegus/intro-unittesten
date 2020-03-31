@@ -15,16 +15,21 @@ import java.util.Optional;
 public class ReserveLogicImpl implements ReserveLogic {
 
     private DataAccessLayer dal;
+    private TodayService todayService;
 
     @Autowired
-    public ReserveLogicImpl(DataAccessLayer dal) {
+    public ReserveLogicImpl(DataAccessLayer dal, TodayService todayService) {
         this.dal = dal;
+        this.todayService = todayService;
     }
 
     @Override
     public ReserveResponse makeReservation(User user, LocalDate startDate, LocalDate endDate) {
-        Reservation newRequest = new Reservation(user, startDate, endDate);
         List<Reservation> existingReservations = dal.retrieveAllReservations();
+        Reservation newRequest = new Reservation(user, startDate, endDate);
+        if (isInThePast(newRequest)) {
+            throw new IllegalArgumentException("Vakantie is in het verleden!");
+        }
         final Optional<Reservation> possibleConflictingReservation =
                 existingReservations.stream().filter(r -> hasConflict(newRequest, r)).findFirst();
         if (possibleConflictingReservation.isPresent()) {
@@ -43,7 +48,16 @@ public class ReserveLogicImpl implements ReserveLogic {
 
     // (EndA <= StartB or StartA >= EndB)
     private boolean hasConflict(Reservation r, Reservation r2) {
-        return !((r.endDate.compareTo(r2.startDate) < 0)
-            || (r.startDate.compareTo(r2.endDate) >= 0));
+        if (r.getUser().getId().equals(r2.getUser().getId())) {
+            return false;
+        } else {
+            return !((r.endDate.compareTo(r2.startDate) <= 0)
+                    || (r.startDate.compareTo(r2.endDate) >= 0));
+        }
+    }
+
+    private boolean isInThePast(Reservation r) {
+        LocalDate today = todayService.getToday();
+        return r.getEndDate().isBefore(today);
     }
 }

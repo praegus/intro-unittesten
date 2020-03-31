@@ -45,7 +45,8 @@ public class DataAccessLayerImpl implements DataAccessLayer {
         }
         Integer userId = reservation.user.getId();
         if (reservationsByUserId.containsKey(userId)) {
-            throw new IllegalStateException("User has an existing reservation");
+            // Overwrite with new values:
+            reservationsByUserId.put(reservation.user.getId(), reservation);
         }
         reservationsByUserId.put(reservation.user.getId(), reservation);
     }
