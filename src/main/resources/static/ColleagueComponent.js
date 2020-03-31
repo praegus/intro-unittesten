@@ -62,7 +62,10 @@ mounted () {
         // werk debug window bij met request en response:
         this.$emit('debug', {messageTo: req, messageFrom: resp} );
 
-        if (resp.reserveringIsGoedgekeurd) {
+        if (resp.message) {
+            this.errorDuringReservation = resp.message;
+        }
+        else if (resp.reserveringIsGoedgekeurd) {
             // Gelukt: werk UI bij:
             this.errorDuringReservation = "";
             this.successfulReservation = req.dateRange;
@@ -77,7 +80,13 @@ mounted () {
           axios
               .post('/user/reserve/' + this.id, this.messageTo)
               .then(response => (this.update(this.messageTo, response.data)))
-              .catch(error => console.log('Fout request: ' + error));
+              .catch(error => {
+                if (error.response.status == 422) {
+                    this.update(this.messageTo, error.response.data)
+                } else {
+                    console.log('Fout request: ' + error);
+                }
+              })
     }
   },
   props: ['id', 'fullname', 'email', 'debug', 'reservation']
