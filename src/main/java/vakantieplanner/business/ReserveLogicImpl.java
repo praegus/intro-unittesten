@@ -43,7 +43,11 @@ public class ReserveLogicImpl implements ReserveLogic {
 
     // (EndA <= StartB or StartA >= EndB)
     private boolean hasConflict(Reservation r, Reservation r2) {
-        return !((r.endDate.compareTo(r2.startDate) < 0)
-            || (r.startDate.compareTo(r2.endDate) >= 0));
+        if (r.getUser().getId().equals(r2.getUser().getId())) {
+            return false;
+        } else {
+            return !((r.endDate.plusDays(1).compareTo(r2.startDate) < 0)
+                    || (r.startDate.minusDays(1).compareTo(r2.endDate) >= 0));
+        }
     }
 }
