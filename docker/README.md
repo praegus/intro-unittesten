@@ -1,7 +1,7 @@
 # Lokaal clonen van deze repo
 Stap 1 is om de code lokaal neer te zetten. Volg daarvoor de volgende stappen:
 * `git pull https://github.com/praegus/intro-unittesten/`
-* `git checkout docker`
+* `git checkout run-with-docker`
 * `cd docker`
 
 # Draaien testobject via Docker
