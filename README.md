@@ -101,3 +101,9 @@ cd intro-unittesten
 
 gradlew clean build
 ```
+
+# Draaien vanuit Docker
+Wil je de applicatie lokaal draaien om tegen aan te testen?
+Dan is Docker de ideale manier om snel deze applicatie lokaal te draaien.
+
+Zie de subfolder docker/ voor meer info.
