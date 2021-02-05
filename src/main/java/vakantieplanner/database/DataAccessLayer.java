@@ -15,5 +15,7 @@ public interface DataAccessLayer {
 
     Optional<Reservation> getReservationsForUser(Integer userId);
 
+    void removeReservationForUser(Integer userId);
+
     void createReservation(Reservation reservation);
 }

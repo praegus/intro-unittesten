@@ -36,6 +36,11 @@ public class DataAccessLayerImpl implements DataAccessLayer {
     }
 
     @Override
+    public void removeReservationForUser(Integer userId) {
+        reservationsByUserId.remove(userId);
+    }
+
+    @Override
     public void createReservation(Reservation reservation) {
         if (reservation == null) {
             throw new IllegalArgumentException("Reservation is null");

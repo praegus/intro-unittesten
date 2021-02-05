@@ -41,6 +41,11 @@ public class ReserveLogicImpl implements ReserveLogic {
         }
     }
 
+    @Override
+    public void removeCurrentReservation(User user) {
+        dal.removeReservationForUser(user.getId());
+    }
+
     // (EndA <= StartB or StartA >= EndB)
     private boolean hasConflict(Reservation r, Reservation r2) {
         if (r.getUser().getId().equals(r2.getUser().getId())) {

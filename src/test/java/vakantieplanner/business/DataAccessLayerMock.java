@@ -44,6 +44,11 @@ public class DataAccessLayerMock implements DataAccessLayer {
     }
 
     @Override
+    public void removeReservationForUser(Integer userId) {
+
+    }
+
+    @Override
     public void createReservation(Reservation reservation) {
     }
 }

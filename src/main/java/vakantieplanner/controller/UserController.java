@@ -42,6 +42,14 @@ public class UserController {
         return userLogic.getUserWithCurrentReservation(id);
     }
 
+    @PostMapping(path = "/delete/{id}")
+    public User remove(@PathVariable("id") int id) {
+        final User user = userLogic.getUserWithCurrentReservation(id);
+        System.out.println("Removing reservation with start date " + user.getReservation().getStartDate());
+        reserveLogic.removeCurrentReservation(user);
+        return userLogic.getUserWithCurrentReservation(id);
+    }
+
     @PostMapping(path = "/reserve/{id}")
     public ReserveResponse reserveVacationDates(@PathVariable("id") int id, @RequestBody ReserveRequest reservation) {
         System.out.println("Servering voor gebruiker met id [" + id + "]: " + reservation);

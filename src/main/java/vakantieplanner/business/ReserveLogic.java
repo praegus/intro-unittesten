@@ -8,4 +8,6 @@ import java.time.LocalDate;
 
 public interface ReserveLogic {
     ReserveResponse makeReservation(User user, LocalDate startDate, LocalDate endDate);
+
+    void removeCurrentReservation(User user);
 }

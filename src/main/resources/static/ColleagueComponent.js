@@ -14,6 +14,7 @@ export default {
          <div class="aanvragen">
            <flat-pickr v-model="dateRange" :config="config" input-class="md-input" size="40"></flat-pickr>
           <button style="float: right;" v-on:click="inplannen">Vakantie inplannen</button>
+          <button v-on:click="verwijderen">Verwijderen</button>
          </div>
          <div v-if="successfulReservation" style="background-color: #dcffcc; color: black">
             Vastgelegde vakantie: <b>{{ successfulReservation }} </b>
@@ -79,6 +80,19 @@ mounted () {
           this.messageTo = {dateRange: this.dateRange};
           axios
               .post('/user/reserve/' + this.id, this.messageTo)
+              .then(response => (this.update(this.messageTo, response.data)))
+              .catch(error => {
+                if (error.response.status == 422) {
+                    this.update(this.messageTo, error.response.data)
+                } else {
+                    console.log('Fout request: ' + error);
+                }
+              })
+    },
+    verwijderen: function(event) {
+          this.messageTo = {};
+          axios
+              .post('/user/delete/' + this.id, this.messageTo)
               .then(response => (this.update(this.messageTo, response.data)))
               .catch(error => {
                 if (error.response.status == 422) {

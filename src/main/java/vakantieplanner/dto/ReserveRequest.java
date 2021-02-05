@@ -10,4 +10,11 @@ public class ReserveRequest {
     }
 
     private String dateRange;
+
+    @Override
+    public String toString() {
+        return "ReserveRequest{" +
+                "dateRange='" + dateRange + '\'' +
+                '}';
+    }
 }
