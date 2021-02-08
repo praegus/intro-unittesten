@@ -14,8 +14,8 @@ public class DataAccessLayerImpl implements DataAccessLayer {
     @Override
     public List<User> retrieveAllUsers() {
         return Arrays.asList(
-                User.UserBuilder.withValues(1, "Paul", "MacDonald", "paul.macdonald@acme.corp"),
-                User.UserBuilder.withValues(2, "Anna", "Welch", "anna.welch@acme.corp"),
+                User.UserBuilder.withValues(1, "Paul", "MacDonald", "N/A"),
+                User.UserBuilder.withValues(2, "Anna", "Welch", "N/A"),
                 User.UserBuilder.withValues(3, "Luke", "Hart", "luke.hart@acme.corp"),
                 User.UserBuilder.withValues(4, "Kimberly", "Morgan", "kimberly.morgan@acme.corp"),
                 User.UserBuilder.withValues(5, "Dan", "MacLeod", "dan.macleod@acme.corp"),

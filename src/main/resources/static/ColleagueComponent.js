@@ -13,8 +13,10 @@ export default {
        <div class="field">
          <div class="aanvragen">
            <flat-pickr v-model="dateRange" :config="config" input-class="md-input" size="40"></flat-pickr>
-          <button style="float: right;" v-on:click="inplannen">Vakantie inplannen</button>
-          <button v-on:click="verwijderen">Verwijderen</button>
+          <button :id="'inplannen-' + email" v-on:click="inplannen">Vakantie inplannen</button>
+         </div>
+         <div>
+             <button :id="'verwijderen-' + email" v-on:click="verwijderen">Verwijderen</button>
          </div>
          <div v-if="successfulReservation" style="background-color: #dcffcc; color: black">
             Vastgelegde vakantie: <b>{{ successfulReservation }} </b>
