@@ -12,7 +12,7 @@ export default {
      <section class="form">
        <div class="field">
          <div class="aanvragen">
-           <flat-pickr v-model="dateRange" :config="config" input-class="md-input" size="40"></flat-pickr>
+           <flat-pickr :id="'input-' + id" v-model="dateRange" :config="config" input-class="md-input" size="40"></flat-pickr>
           <button :id="'inplannen-' + email" v-on:click="inplannen">Vakantie inplannen</button>
          </div>
          <div>
